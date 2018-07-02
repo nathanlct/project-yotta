@@ -4,12 +4,13 @@ Game::Game(sf::RenderWindow &window) :
   m_window(window)
 {
   systems.add<InputSystem>(m_window);
+  systems.add<BodySystem>();
   systems.add<RenderSystem>(m_window);
   systems.configure();
 }
 
 void Game::start() {
-  ex::Entity player = entities.create();
+  ex::Entity player = entities.create(); // tmp to debug InputSystem
 
   player.assign<Body>(
     sf::Vector2f(m_window.getSize().x / 2, m_window.getSize().y / 2),
@@ -34,6 +35,7 @@ void Game::stop() {
 
 void Game::update(ex::TimeDelta dt) {
   systems.update<InputSystem>(dt);
+  systems.update<BodySystem>(dt);
   // other systems..
   systems.update<RenderSystem>(dt);
 }

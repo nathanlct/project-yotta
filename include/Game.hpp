@@ -8,6 +8,7 @@
 #include <iostream>
 
 #include "systems/InputSystem.hpp"
+#include "systems/BodySystem.hpp"
 #include "systems/RenderSystem.hpp"
 
 #include "components/Body.hpp"
