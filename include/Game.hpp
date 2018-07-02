@@ -7,17 +7,24 @@
 
 #include <iostream>
 
+#include "systems/InputSystem.hpp"
+#include "systems/RenderSystem.hpp"
+
+#include "components/Body.hpp"
+#include "components/Renderable.hpp"
+#include "components/Controllable.hpp"
+
 namespace ex = entityx;
 
 
 class Game : public ex::EntityX {
 public:
-  Game(sf::RenderTarget &target);
+  explicit Game(sf::RenderWindow &window);
   void start();
   void pause();
   void stop();
   void update(ex::TimeDelta dt);
 
 private:
-  sf::RenderTarget &m_target;
+  sf::RenderWindow &m_window;
 };
