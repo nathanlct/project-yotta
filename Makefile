@@ -22,7 +22,7 @@ all : build
 ${OBJDIR}/%.o : ${SRCDIR}/%.cpp
 	@printf "\tBuilding %-30s" $@
 	@mkdir -p ${dir $@}
-	@${CC} $< -MM -I./${INCLDIR} -MT $@ > ${patsubst %.o,%.d,$@}
+	@${CC} ${CFLAGS} $< -MM -I./${INCLDIR} -MT $@ > ${patsubst %.o,%.d,$@}
 	@${CC} -I./${INCLDIR} ${CFLAGS} -c $< -o $@
 	@printf "done\n"
 
