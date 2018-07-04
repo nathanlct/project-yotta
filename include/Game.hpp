@@ -2,6 +2,7 @@
 
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 #include <entityx/entityx.h>
 
@@ -28,4 +29,5 @@ public:
 
 private:
   sf::RenderWindow &m_window;
+  sf::Music m_soundtrack;
 };

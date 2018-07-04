@@ -1,10 +1,12 @@
 
 CC := g++
-CFLAGS := -c -std=c++11 -O3
+#x86_64-w64-mingw32-gcc
+CFLAGS := -c -std=c++11 -O3 --static
 
 LD := g++
-LDFLAGS := -Wall -std=c++11
-LIBS := -lsfml-graphics -lsfml-window -lsfml-system -lentityx
+#x86_64-w64-mingw32-gcc
+LDFLAGS := -Wall -std=c++11 -I/usr/local/lib/
+LIBS := -lsfml-graphics -lsfml-window -lsfml-system -lentityx -lsfml-audio
 
 SRCDIR  := src
 INCLDIR := include
@@ -14,7 +16,7 @@ BINDIR  := bin
 SRCFILES := ${shell find ${SRCDIR} | grep .cpp}
 OBJECTS  := ${patsubst ${SRCDIR}/%.cpp,${OBJDIR}/%.o,${SRCFILES}}
 
-TARGET := yotta
+TARGET := yotta.exe
 
 .PHONY: all
 all : build

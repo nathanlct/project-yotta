@@ -14,7 +14,7 @@ void Game::start() {
 
   player.assign<Body>(
     sf::Vector2f(m_window.getSize().x / 2, m_window.getSize().y / 2),
-    sf::Vector2f(0, 0)
+    sf::Vector2f(20, 10)
   );
 
   Renderable triangle(new sf::CircleShape(30, 3));
@@ -23,6 +23,10 @@ void Game::start() {
   player.assign<Renderable>(triangle);
 
   player.assign<Controllable>();
+
+  if (!m_soundtrack.openFromFile("res/test_retro.wav"))
+    fprintf(stderr, "ERROR: couldn't load music\n");
+  m_soundtrack.play();
 }
 
 void Game::pause() {
