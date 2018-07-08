@@ -13,5 +13,5 @@ public:
 	void update(ex::EntityManager &es, ex::EventManager &events, ex::TimeDelta dt) override;
 
 private:
-  sf::RenderWindow &m_window;
+  sf::RenderWindow &window;
 };

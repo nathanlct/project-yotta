@@ -2,15 +2,15 @@
 
 
 InputSystem::InputSystem(sf::RenderWindow &window)
-  : m_window(window) {}
+  : window(window) {}
 
 void InputSystem::update(ex::EntityManager &es, ex::EventManager &events, ex::TimeDelta dt)
 {
   sf::Event event;
-  while (m_window.pollEvent(event)) {
+  while (window.pollEvent(event)) {
     switch (event.type) {
       case sf::Event::Closed:
-        m_window.close();
+        window.close();
         break;
       case sf::Event::KeyPressed:
 

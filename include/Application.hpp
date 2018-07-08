@@ -9,6 +9,6 @@
 
 class Application {
 public:
-  Application();
+  explicit Application();
   void run();
 };

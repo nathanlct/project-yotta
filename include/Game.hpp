@@ -8,16 +8,21 @@
 
 #include <iostream>
 
-#include "systems/InputSystem.hpp"
-#include "systems/BodySystem.hpp"
-#include "systems/RenderSystem.hpp"
+#include "TileManager.hpp"
 
-#include "components/Body.hpp"
+#include "systems/InputSystem.hpp"
+#include "systems/MovementSystem.hpp"
+#include "systems/RenderSystem.hpp"
+#include "systems/CollisionSystem.hpp"
+#include "systems/CollisionCallbackSystem.hpp"
+
+#include "components/Position.hpp"
+#include "components/Direction.hpp"
 #include "components/Renderable.hpp"
 #include "components/Controllable.hpp"
+#include "components/Collideable.hpp"
 
 namespace ex = entityx;
-
 
 class Game : public ex::EntityX {
 public:
@@ -28,6 +33,7 @@ public:
   void update(ex::TimeDelta dt);
 
 private:
-  sf::RenderWindow &m_window;
-  sf::Music m_soundtrack;
+  sf::RenderWindow &window;
+  sf::Music soundtrack;
+  TileManager tm;
 };

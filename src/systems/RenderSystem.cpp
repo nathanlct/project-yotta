@@ -1,22 +1,25 @@
 #include "systems/RenderSystem.hpp"
 
 
-RenderSystem::RenderSystem(sf::RenderTarget &target)
-  : m_target(target) {}
+RenderSystem::RenderSystem(sf::RenderTarget &target, unsigned short max_z)
+  : target(target), max_z(max_z) {}
 
 void RenderSystem::update(ex::EntityManager &es, ex::EventManager &events, ex::TimeDelta dt) {
-  es.each<Body, Renderable>([this](ex::Entity entity, Body &body, Renderable &renderable) {
-    renderable->setPosition(body.position);
-    m_target.draw(*renderable.get());
-  });
+  for (int z = 0; z <= max_z; z++) {
+    es.each<Position, Renderable>([this,z](ex::Entity entity, Position &pos, Renderable &renderable) {
+      if (renderable.z_axis == z) {
+        renderable.shape.setPosition(pos.position);
+        target.draw(renderable.shape);
+      }
+    });
+  }
 
-  m_last_update += dt;
-  m_frame_count++;
-  if (m_last_update >= 1.0) {
-    const double fps = m_frame_count / m_last_update;
+  last_update += dt;
+  frame_count++;
+  if (last_update >= 1.0) {
+    const double fps = frame_count / last_update;
     printf("%zu entities (%d fps)\n", es.size(), static_cast<int>(fps));
-
-    m_last_update = 0.0;
-    m_frame_count = 0;
+    last_update = 0.0;
+    frame_count = 0;
   }
 }

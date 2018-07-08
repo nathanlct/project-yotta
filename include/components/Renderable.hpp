@@ -3,4 +3,10 @@
 #include <SFML/Graphics.hpp>
 
 
-using Renderable = std::shared_ptr<sf::Shape>;
+struct Renderable {
+  Renderable(const sf::RectangleShape &shape, unsigned short z_axis) : shape(shape), z_axis(z_axis)
+  {}
+
+  sf::RectangleShape shape;
+  unsigned short z_axis;
+};
